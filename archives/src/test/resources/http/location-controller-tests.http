@@ -1,0 +1,23 @@
+### address id test: check response for id 1
+GET http://localhost:8080/api/v1/addresses/1
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.addressId === 1, "Address id is not 1");
+        client.assert(response.body.address === "47 MySakila Drive", "Title is not '47 MySakila Drive'");
+    });
+%}
+
+### cities id test: check response for id 1
+GET http://localhost:8080/api/v1/cities/1
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.cityId === 1, "City id is not 1");
+        client.assert(response.body.city === "A Coruña (La Coruña)", "Title is not 'A Coruña (La Coruña)'");
+    });
+%}

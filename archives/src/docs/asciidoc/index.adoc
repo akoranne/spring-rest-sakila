@@ -1,0 +1,89 @@
+= Sakila REST API Service Reference
+Jinseong Ha;
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 3
+:sectlinks:
+
+[[overview]]
+== Overview
+
+This REST API service provides access to the https://dev.mysql.com/doc/sakila/en/[Sakila database], which is a sample database provided by MySQL for learning and testing purposes.
+The Sakila database models a DVD rental store company, includes data about films, actors, customers, rentals, and more.
+
+This service provides a simple way to perform CRUD(Create, Read, Update, Delete) operations on the Sakila database.
+It also provides endpoints to perform more complex queries.
+
+[[API]]
+== API
+
+[[Actor_API]]
+=== Actor API
+
+==== GET /actors
+
+Get list of actor
+
+operation::asciidoctor/actor-list-tests/get-actor-list_success[snippets="http-request,http-response,response-fields,links"]
+
+==== POST /actors
+
+Add actor
+
+operation::asciidoctor/actor-update-tests/add-actor_success[snippets="http-request,request-fields,http-response,response-headers"]
+
+==== GET /actors/{actorId}
+
+Get actor
+
+operation::asciidoctor/actor-list-tests/get-actor_success[snippets="path-parameters,http-request,http-response,response-fields,links"]
+
+==== PUT /actors/{actorId}
+
+Update actor
+
+operation::asciidoctor/actor-update-tests/update-actor_success[snippets="path-parameters,http-request,request-fields,http-response"]
+
+==== DELETE /actors/{actorId}
+
+Delete actor
+
+operation::asciidoctor/actor-update-tests/delete-actor_success[snippets="path-parameters,http-request,http-response"]
+
+==== GET /actors/{actorId}/details
+
+Get details of actor
+
+operation::asciidoctor/actor-details-tests/get-actor-details_success[snippets="path-parameters,http-request,http-response,response-fields,links"]
+
+==== GET /actors/{actorId}/films
+
+Get film list of actor
+
+operation::asciidoctor/actor-film-tests/get-actor-film-list_success[snippets="path-parameters,http-request,http-response,response-fields,links"]
+
+==== POST /actors/{actorId}/films
+
+Add film to film list of actor
+
+operation::asciidoctor/actor-film-tests/add-actor-film_success[snippets="path-parameters,http-request,http-response,request-fields"]
+
+==== GET /actors/{actorId}/films/{filmId}
+
+Get film of actor
+
+operation::asciidoctor/actor-film-tests/get-actor-film_success[snippets="path-parameters,http-request,http-response,response-fields,links"]
+
+==== DELETE /actors/{actorId}/films/{filmId}
+
+Remove film from film list of actor
+
+operation::asciidoctor/actor-film-tests/delete-actor-film_success[snippets="path-parameters,http-request,http-response"]
+
+==== GET /actors/{actorId}/films/{filmId}/details
+
+Get details of film of actor
+
+operation::asciidoctor/actor-film-details-tests/get-actor-film-details_success[snippets="path-parameters,http-request,http-response,response-fields,links"]

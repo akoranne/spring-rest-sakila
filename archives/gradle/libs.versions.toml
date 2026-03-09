@@ -1,0 +1,67 @@
+[versions]
+spring-boot = "3.0.5"
+spring-dependency = "1.1.0"
+spring-security = "6.0.2"
+spring-restdocs = "3.0.0"
+asciidoctor= "3.3.2"
+epages-restdocs = "0.17.1"
+kotlin-plugin = "1.8.10"
+querydsl = "5.0.0"
+blaze = "1.6.8"
+mapstruct = "1.5.5.Final"
+jjwt = "0.11.5"
+# spotless = "6.21.0"
+
+[libraries]
+spring-web = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "spring-boot" }
+spring-hateoas = { module = "org.springframework.boot:spring-boot-starter-hateoas", version.ref = "spring-boot" }
+spring-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa", version.ref = "spring-boot" }
+spring-data-redis = { module = "org.springframework.boot:spring-boot-starter-data-redis", version.ref = "spring-boot" }
+spring-validation = { module = "org.springframework.boot:spring-boot-starter-validation", version.ref = "spring-boot" }
+spring-security = { module = "org.springframework.boot:spring-boot-starter-security", version.ref = "spring-boot" }
+# spring-oauth2 = { module = "org.springframework.boot:spring-boot-starter-oauth2-client", version.ref = "spring-boot" }
+spring-actuator = { module = "org.springframework.boot:spring-boot-starter-actuator", version.ref = "spring-boot" }
+# spring-devtools = { module = "org.springframework.boot:spring-boot-devtools", version.ref = "spring-boot" }
+spring-processor = { module = "org.springframework.boot:spring-boot-configuration-processor", version.ref = "spring-boot" }
+spring-test = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "spring-boot" }
+spring-security-test = { module = "org.springframework.security:spring-security-test", version.ref = "spring-security" }
+spring-restdocs-asciidoctor = { module = "org.springframework.restdocs:spring-restdocs-asciidoctor", version.ref = "spring-restdocs" }
+spring-restdocs-mockmvc = { module = "org.springframework.restdocs:spring-restdocs-mockmvc", version.ref = "spring-restdocs" }
+
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+
+querydsl-jpa = { module = "com.querydsl:querydsl-jpa", version.ref = "querydsl" }
+querydsl-apt = { module = "com.querydsl:querydsl-apt", version.ref = "querydsl" }
+querydsl-sql = { module = "com.querydsl:querydsl-sql", version.ref = "querydsl" }
+querydsl-sql-codegen = { module = "com.querydsl:querydsl-sql-codegen", version.ref = "querydsl" }
+querydsl-sql-spring = { module = "com.querydsl:querydsl-sql-spring", version.ref = "querydsl" }
+querydsl-spatial = { module = "com.querydsl:querydsl-spatial", version.ref = "querydsl" }
+
+blaze-core-api = { module = "com.blazebit:blaze-persistence-core-api-jakarta", version.ref = "blaze" }
+blaze-core-impl = { module = "com.blazebit:blaze-persistence-core-impl-jakarta", version.ref = "blaze" }
+blaze-hibernate = { module = "com.blazebit:blaze-persistence-integration-hibernate-6.0", version.ref = "blaze" }
+blaze-querydsl = { module = "com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta", version.ref = "blaze" }
+
+mapstruct = { module = "org.mapstruct:mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { module = "org.mapstruct:mapstruct-processor", version.ref = "mapstruct" }
+epages-restdocs-mockmvc = { module = "com.epages:restdocs-api-spec-mockmvc", version.ref = "epages-restdocs" }
+
+lombok = { module = "org.projectlombok:lombok", version = "1.18.26" }
+lombok-mapstruct = { module = "org.projectlombok:lombok-mapstruct-binding", version = "0.2.0" }
+guava = { module = "com.google.guava:guava", version = "31.1-jre" }
+mysql-connector = { module = "com.mysql:mysql-connector-j", version = "8.0.32" }
+prometheus = { module = "io.micrometer:micrometer-registry-prometheus", version = "1.10.4" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }
+spring-dependency = { id = "io.spring.dependency-management", version.ref = "spring-dependency" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin-plugin" }
+kotlin-spring = { id = "org.jetbrains.kotlin.plugin.spring", version.ref = "kotlin-plugin" }
+kotlin-jpa = { id = "org.jetbrains.kotlin.plugin.jpa", version.ref = "kotlin-plugin" }
+kotlin-lombok = { id = "org.jetbrains.kotlin.plugin.lombok", version.ref = "kotlin-plugin" }
+kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin-plugin" }
+epages-restdocs = { id = "com.epages.restdocs-api-spec", version.ref = "epages-restdocs" }
+asciidoctor = { id = "org.asciidoctor.jvm.convert", version.ref = "asciidoctor" }
+# spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

@@ -1,0 +1,64 @@
+---
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/sakila
+    username: sakila
+    password: sakila
+    hikari:
+      minimum-idle: 30
+      maximum-pool-size: 30
+      connection-timeout: 10000
+      validation-timeout: 5000
+      leak-detection-threshold: 60000
+      auto-commit: true
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: validate
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: true
+    show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: redis
+      repositories:
+        enabled: false
+      lettuce:
+        pool:
+          enabled: true
+          min-idle: 10
+          max-idle: 10
+          max-active: 10
+          max-wait: 10000
+logging:
+  level:
+    root: info
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+    jmx:
+      exposure:
+        exclude: "*"
+
+app:
+  uri:
+    scheme: http
+    host: localhost
+    port: ${server.port}
+  jwt:
+    signing-key: aW8uanNvbndlYnRva2VuLnNlY3VyaXR5

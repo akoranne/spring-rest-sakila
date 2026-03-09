@@ -1,0 +1,10 @@
+### store id test: check response for id 1
+GET http://localhost:8080/api/v1/stores/1
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 200, "Response status is not 200");
+        client.assert(response.body.storeId === 1, "Store id is not 1");
+    });
+%}

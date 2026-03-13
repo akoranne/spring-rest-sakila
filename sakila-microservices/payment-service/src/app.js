@@ -3,6 +3,7 @@ const cors = require('cors');
 const correlationId = require('./middleware/correlationId');
 const requestLogger = require('./middleware/requestLogger');
 const healthRoutes = require('./routes/health');
+const paymentRoutes = require('./routes/payment');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -13,8 +14,7 @@ app.use(correlationId);
 app.use(requestLogger);
 
 app.use(healthRoutes);
-
-// TODO: Mount service-specific routes here
+app.use(paymentRoutes);
 
 app.use(errorHandler);
 

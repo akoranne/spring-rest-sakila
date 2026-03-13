@@ -81,7 +81,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - **Property 2: JWT Validation Rejects Invalid Tokens** — For any random string, the JWT middleware rejects it with 401
     - **Validates: Requirements 6.3, 6.4**
 
-  - [ ]* 4.3 Write unit tests for Auth Service
+  - [x] 4.3 Write unit tests for Auth Service
     - Test authService.login success path (valid credentials return JWT)
     - Test authService.login failure paths (wrong password, non-existent email)
     - Test JWT middleware (valid token, expired token, missing token, tampered signature)
@@ -90,7 +90,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 6.5, 13.1, 13.4, 13.6_
 
 - [ ] 5. Implement Location Service
-  - [ ] 5.1 Implement Location Service routes, controllers, services, and repositories
+  - [x] 5.1 Implement Location Service routes, controllers, services, and repositories
     - Create routes for addresses: `GET /location/addresses`, `POST /location/addresses`, `GET /location/addresses/:addressId`, `PUT /location/addresses/:addressId`, `DELETE /location/addresses/:addressId`, `GET /location/addresses/:addressId/details`
     - Create routes for cities: `GET /location/cities`, `POST /location/cities`, `GET /location/cities/:cityId`, `PUT /location/cities/:cityId`, `DELETE /location/cities/:cityId`
     - Create controllers, services, and repositories for address and city CRUD operations using Knex.js scoped to `location_schema`
@@ -99,15 +99,15 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Apply `jwtAuth` and `requireRole('ROLE_READ')` for GET, `requireRole('ROLE_MANAGE')` for POST/PUT/DELETE
     - _Requirements: 2.6, 3.2, 3.4, 3.5, 4.10, 6.3, 18.1, 18.2_
 
-  - [ ]* 5.2 Write unit tests for Location Service
+  - [x] 5.2 Write unit tests for Location Service
     - Test address and city CRUD service-layer functions (success and error paths)
     - Test Joi validation schemas (valid input accepted, invalid input rejected with field-level errors)
     - Test pagination logic
     - Mock Knex.js database calls
     - _Requirements: 13.1, 13.2, 13.4_
 
-- [ ] 6. Implement Catalog Service
-  - [ ] 6.1 Implement Catalog Service routes, controllers, services, and repositories
+- [-] 6. Implement Catalog Service
+  - [x] 6.1 Implement Catalog Service routes, controllers, services, and repositories
     - Create routes for films: `GET /films`, `POST /films`, `GET /films/:filmId`, `PUT /films/:filmId`, `DELETE /films/:filmId`, `GET /films/:filmId/actors`, `GET /films/:filmId/actors/:actorId`, `GET /films/:filmId/details`
     - Create routes for actors: `GET /actors`, `POST /actors`, `GET /actors/:actorId`, `PUT /actors/:actorId`, `DELETE /actors/:actorId`, `GET /actors/:actorId/details`, `GET /actors/:actorId/films`, `POST /actors/:actorId/films`, `DELETE /actors/:actorId/films/:filmId`, `POST /actors/search`
     - Create controllers, services, and repositories for film and actor CRUD using Knex.js scoped to `catalog_schema`
@@ -119,24 +119,24 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Apply `jwtAuth` and `requireRole('ROLE_READ')` for GET, `requireRole('ROLE_MANAGE')` for POST/PUT/DELETE
     - _Requirements: 2.4, 3.2, 3.4, 3.5, 4.1, 4.2, 6.6, 18.1, 18.2, 18.3, 18.4_
 
-  - [ ]* 6.2 Write property tests for Catalog Service
+  - [x] 6.2 Write property tests for Catalog Service
     - **Property 4: Pagination Consistency** — Iterating all pages yields exactly N total records with no duplicates or omissions
     - **Validates: Requirements 3.5**
     - **Property 18: Input Validation Rejects Invalid Data** — Any request body with at least one validation violation returns 400 with all errors listed
     - **Validates: Requirements 18.1, 18.2, 18.3, 18.4, 18.5**
 
-  - [ ]* 6.3 Write unit tests for Catalog Service
+  - [x] 6.3 Write unit tests for Catalog Service
     - Test film and actor CRUD service-layer functions (success and error paths)
     - Test Joi validation schemas for films and actors
     - Test pagination, filtering, and search logic
     - Mock Knex.js database calls
     - _Requirements: 13.1, 13.2, 13.4_
 
-- [ ] 7. Checkpoint - Core services foundation
+- [x] 7. Checkpoint - Core services foundation
   - Ensure Auth, Location, and Catalog services start, health endpoints respond, and unit tests pass. Ask the user if questions arise.
 
-- [ ] 8. Implement Payment Service
-  - [ ] 8.1 Implement Payment Service routes, controllers, services, and repositories
+- [x] 8. Implement Payment Service
+  - [x] 8.1 Implement Payment Service routes, controllers, services, and repositories
     - Create routes: `GET /payments`, `GET /payments/:paymentId`, `PUT /payments/:paymentId`, `DELETE /payments/:paymentId`, `GET /payments/:paymentId/details`
     - Support `GET /payments?customerId=X` query parameter for cross-service filtering (used by Customer Service)
     - Create controllers, services, and repositories using Knex.js scoped to `payment_schema`
@@ -145,15 +145,15 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Apply `jwtAuth` and `requireRole('ROLE_MANAGE')` for all endpoints
     - _Requirements: 2.7, 3.2, 3.4, 3.5, 4.5, 6.9, 18.1, 18.3_
 
-  - [ ]* 8.2 Write unit tests for Payment Service
+  - [x] 8.2 Write unit tests for Payment Service
     - Test payment CRUD service-layer functions (success and error paths)
     - Test Joi validation schemas
     - Test customerId query parameter filtering
     - Mock Knex.js database calls
     - _Requirements: 13.1, 13.2, 13.4_
 
-- [ ] 9. Implement Rental Service
-  - [ ] 9.1 Implement Rental Service routes, controllers, services, and repositories
+- [x] 9. Implement Rental Service
+  - [x] 9.1 Implement Rental Service routes, controllers, services, and repositories
     - Create routes: `GET /rentals`, `POST /rentals`, `GET /rentals/:rentalId`, `PUT /rentals/:rentalId`, `DELETE /rentals/:rentalId`, `PUT /rentals/return`
     - Support `GET /rentals?customerId=X` query parameter for cross-service filtering (used by Customer Service)
     - Implement rental creation with rental_date defaulting to `now()` if not provided, return_date nullable
@@ -164,15 +164,15 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Apply `jwtAuth` and `requireRole('ROLE_MANAGE')` for all endpoints
     - _Requirements: 2.8, 3.2, 3.4, 3.5, 4.4, 5.3, 6.8, 18.1_
 
-  - [ ]* 9.2 Write unit tests for Rental Service
+  - [ ] 9.2 Write unit tests for Rental Service
     - Test rental CRUD and return service-layer functions (success and error paths)
     - Test rental_date default behavior and return_date nullable logic
     - Test Joi validation schemas
     - Mock Knex.js database calls
     - _Requirements: 13.1, 13.2, 13.4_
 
-- [ ] 10. Implement Customer Service with inter-service communication
-  - [ ] 10.1 Implement Customer Service routes, controllers, services, and repositories
+- [x] 10. Implement Customer Service with inter-service communication
+  - [x] 10.1 Implement Customer Service routes, controllers, services, and repositories
     - Create routes: `GET /customers`, `POST /customers`, `GET /customers/:customerId`, `PUT /customers/:customerId`, `DELETE /customers/:customerId`, `GET /customers/:customerId/details`
     - Create controllers, services, and repositories using Knex.js scoped to `customer_schema`
     - Create Joi validators for customer (first_name, last_name required max 45 chars, store_id, address_id as required integers)
@@ -180,14 +180,14 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Apply `jwtAuth` and `requireRole('ROLE_MANAGE')` for all endpoints
     - _Requirements: 2.5, 3.2, 3.4, 3.5, 4.3, 6.7, 18.1, 18.2_
 
-  - [ ] 10.2 Implement inter-service calls for customer details endpoint
+  - [x] 10.2 Implement inter-service calls for customer details endpoint
     - In `GET /customers/:customerId/details`, call Payment Service (`GET /payments?customerId=X`) and Rental Service (`GET /rentals?customerId=X`) using the shared httpClient utility
     - Forward JWT token and X-Correlation-ID to downstream services
     - Return 503 with standard error format if either downstream service is unavailable
     - Aggregate customer data with payment and rental history in the response
     - _Requirements: 5.1, 5.2, 5.3, 5.5, 5.6, 8.2_
 
-  - [ ]* 10.3 Write property tests for inter-service communication
+  - [x] 10.3 Write property tests for inter-service communication
     - **Property 5: Downstream Service Unavailability Returns 503** — When downstream service is unreachable, calling service returns 503 with standard error format
     - **Validates: Requirements 5.5**
     - **Property 7: Correlation ID Propagation** — All outgoing inter-service calls include the same X-Correlation-ID from the incoming request
@@ -195,7 +195,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - **Property 17: Downstream Error Propagation** — When downstream returns an error, the calling service propagates an appropriate HTTP error status
     - **Validates: Requirements 15.5**
 
-  - [ ]* 10.4 Write unit tests for Customer Service
+  - [x] 10.4 Write unit tests for Customer Service
     - Test customer CRUD service-layer functions (success and error paths)
     - Test inter-service call logic with nock mocks (success, downstream 404, downstream timeout)
     - Test Joi validation schemas
@@ -213,7 +213,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Apply `jwtAuth` and `requireRole('ROLE_MANAGE')` for read endpoints, `requireRole('ROLE_ADMIN')` for create/update/delete on stores and staff
     - _Requirements: 2.9, 3.2, 3.4, 3.5, 4.6, 4.7, 4.8, 6.10, 18.1, 18.2_
 
-  - [ ]* 11.2 Write unit tests for Store Service
+  - [x] 11.2 Write unit tests for Store Service
     - Test store, staff, and inventory CRUD service-layer functions (success and error paths)
     - Test sales report aggregation logic
     - Test Joi validation schemas
@@ -221,7 +221,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Mock Knex.js database calls
     - _Requirements: 13.1, 13.2, 13.4_
 
-- [ ] 12. Checkpoint - All services implemented
+- [x] 12. Checkpoint - All services implemented
   - Ensure all seven services start, health endpoints respond, and unit tests pass for all services. Ask the user if questions arise.
 
 - [ ] 13. Implement API Gateway and Docker Compose orchestration
@@ -231,7 +231,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Create `api-gateway/Dockerfile` using official NGINX Alpine image
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8_
 
-  - [ ] 13.2 Create Dockerfiles for all microservices
+  - [ ] 13.2 Create/update Dockerfiles for all microservices
     - Create a multi-stage Dockerfile in each service directory: build stage installs dependencies, production stage uses Node.js Alpine base image
     - Run Node.js process as non-root user
     - Expose configurable port (default 3000)

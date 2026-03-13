@@ -14,7 +14,13 @@ app.use(requestLogger);
 
 app.use(healthRoutes);
 
-// TODO: Mount service-specific routes here
+const storeRoutes = require('./routes/store');
+const staffRoutes = require('./routes/staff');
+const reportRoutes = require('./routes/report');
+
+app.use(storeRoutes);
+app.use(staffRoutes);
+app.use(reportRoutes);
 
 app.use(errorHandler);
 

@@ -252,8 +252,8 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - **Property 6: API Gateway Returns 502 When Target Unreachable** — When target microservice is unreachable, gateway returns 502 with descriptive error
     - **Validates: Requirements 9.8**
 
-- [ ] 14. Implement cross-cutting property tests and shared middleware tests
-  - [ ]* 14.1 Write property tests for health and observability
+- [x] 14. Implement cross-cutting property tests and shared middleware tests
+  - [x]* 14.1 Write property tests for health and observability
     - **Property 13: Health Endpoint Response Format** — GET /health returns 200 with JSON containing name (string), status (string), uptime (number)
     - **Validates: Requirements 10.1**
     - **Property 14: Readiness Endpoint Reflects Database Connectivity** — GET /health/ready returns 200 when DB is healthy, 503 when DB is unavailable
@@ -261,13 +261,13 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - **Property 15: Structured Request Logging** — Every incoming request produces a structured JSON log with timestamp, method, path, statusCode, responseTime
     - **Validates: Requirements 10.4**
 
-  - [ ]* 14.2 Write property tests for error handling and validation
+  - [x]* 14.2 Write property tests for error handling and validation
     - **Property 3: Role-Based Access Control Enforcement** — For any endpoint and JWT without the required role, service returns 403
     - **Validates: Requirements 6.5**
     - **Property 16: Consistent Error Response Format** — All error responses (4xx/5xx) conform to `{ error: { code, message, details, timestamp } }` format
     - **Validates: Requirements 15.1, 15.2, 15.3, 15.4**
 
-  - [ ]* 14.3 Write property tests for configuration management
+  - [x]* 14.3 Write property tests for configuration management
     - **Property 19: Configuration Read From Environment Variables** — When env var is set, the service uses that value
     - **Validates: Requirements 3.6, 19.1, 19.2**
     - **Property 20: Default Values for Optional Configuration** — When PORT/LOG_LEVEL are unset, defaults to 3000/info

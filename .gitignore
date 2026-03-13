@@ -165,3 +165,4 @@ fabric.properties
 ### Others
 .idea/
 bin/
+.DS_Store

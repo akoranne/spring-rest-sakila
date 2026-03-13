@@ -1,0 +1,147 @@
+version: "3.8"
+
+networks:
+  sakila-net:
+    driver: bridge
+
+volumes:
+  pgdata:
+
+services:
+  # ── PostgreSQL ──────────────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sakila
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./infrastructure/migrations:/docker-entrypoint-initdb.d/migrations
+      - ./infrastructure/db-init/init-schemas.sh:/docker-entrypoint-initdb.d/99-init-schemas.sh
+    ports:
+      - "5432:5432"
+    networks:
+      - sakila-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d sakila"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+  # ── Auth Service ────────────────────────────────────────────
+  auth-service:
+    build: ./auth-service
+    environment:
+      DATABASE_URL: postgres://auth_user:changeme@postgres:5432/sakila?currentSchema=auth_schema
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+      PORT: "3001"
+      LOG_LEVEL: info
+    networks:
+      - sakila-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── Catalog Service ─────────────────────────────────────────
+  catalog-service:
+    build: ./catalog-service
+    environment:
+      DATABASE_URL: postgres://catalog_user:changeme@postgres:5432/sakila?currentSchema=catalog_schema
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+      PORT: "3002"
+      LOG_LEVEL: info
+    networks:
+      - sakila-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── Customer Service ────────────────────────────────────────
+  customer-service:
+    build: ./customer-service
+    environment:
+      DATABASE_URL: postgres://customer_user:changeme@postgres:5432/sakila?currentSchema=customer_schema
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+      PORT: "3003"
+      LOG_LEVEL: info
+      PAYMENT_SERVICE_URL: http://payment-service:3005
+      RENTAL_SERVICE_URL: http://rental-service:3006
+    networks:
+      - sakila-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── Location Service ────────────────────────────────────────
+  location-service:
+    build: ./location-service
+    environment:
+      DATABASE_URL: postgres://location_user:changeme@postgres:5432/sakila?currentSchema=location_schema
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+      PORT: "3004"
+      LOG_LEVEL: info
+    networks:
+      - sakila-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── Payment Service ─────────────────────────────────────────
+  payment-service:
+    build: ./payment-service
+    environment:
+      DATABASE_URL: postgres://payment_user:changeme@postgres:5432/sakila?currentSchema=payment_schema
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+      PORT: "3005"
+      LOG_LEVEL: info
+    networks:
+      - sakila-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── Rental Service ──────────────────────────────────────────
+  rental-service:
+    build: ./rental-service
+    environment:
+      DATABASE_URL: postgres://rental_user:changeme@postgres:5432/sakila?currentSchema=rental_schema
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+      PORT: "3006"
+      LOG_LEVEL: info
+    networks:
+      - sakila-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── Store Service ───────────────────────────────────────────
+  store-service:
+    build: ./store-service
+    environment:
+      DATABASE_URL: postgres://store_user:changeme@postgres:5432/sakila?currentSchema=store_schema
+      JWT_SECRET: super-secret-jwt-key-change-in-production
+      PORT: "3007"
+      LOG_LEVEL: info
+    networks:
+      - sakila-net
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  # ── API Gateway (NGINX) ────────────────────────────────────
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - sakila-net
+    depends_on:
+      - auth-service
+      - catalog-service
+      - customer-service
+      - location-service
+      - payment-service
+      - rental-service
+      - store-service

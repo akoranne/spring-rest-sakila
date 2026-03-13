@@ -202,7 +202,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - _Requirements: 13.1, 13.2, 13.4_
 
 - [ ] 11. Implement Store Service
-  - [ ] 11.1 Implement Store Service routes, controllers, services, and repositories
+  - [x] 11.1 Implement Store Service routes, controllers, services, and repositories
     - Create routes for stores: `GET /stores`, `POST /stores`, `GET /stores/:storeId`, `PUT /stores/:storeId`, `DELETE /stores/:storeId`, `GET /stores/:storeId/details`
     - Create routes for store staff: `GET /stores/:storeId/staffs`, `GET /stores/:storeId/staffs/:staffId`, `POST /stores/:storeId/staffs/:staffId`, `PUT /stores/:storeId/staffs/:staffId`, `DELETE /stores/:storeId/staffs/:staffId`
     - Create routes for staff: `GET /staffs`, `POST /staffs`, `GET /staffs/:staffId`, `PUT /staffs/:staffId`, `DELETE /staffs/:staffId`, `GET /staffs/:staffId/details`
@@ -225,13 +225,13 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
   - Ensure all seven services start, health endpoints respond, and unit tests pass for all services. Ask the user if questions arise.
 
 - [ ] 13. Implement API Gateway and Docker Compose orchestration
-  - [ ] 13.1 Create NGINX API Gateway configuration
+  - [x] 13.1 Create NGINX API Gateway configuration
     - Create `api-gateway/nginx.conf` with path-based routing rules: `/api/v1/login` → auth-service:3001, `/api/v1/films` and `/api/v1/actors` → catalog-service:3002, `/api/v1/customers` → customer-service:3003, `/api/v1/location` → location-service:3004, `/api/v1/payments` → payment-service:3005, `/api/v1/rentals` → rental-service:3006, `/api/v1/stores`, `/api/v1/staffs`, `/api/v1/reports` → store-service:3007
     - Configure NGINX to return HTTP 502 with JSON error body when target service is unreachable
     - Create `api-gateway/Dockerfile` using official NGINX Alpine image
     - _Requirements: 9.1, 9.2, 9.3, 9.4, 9.5, 9.6, 9.7, 9.8_
 
-  - [ ] 13.2 Create/update Dockerfiles for all microservices
+  - [x] 13.2 Create/update Dockerfiles for all microservices
     - Create a multi-stage Dockerfile in each service directory: build stage installs dependencies, production stage uses Node.js Alpine base image
     - Run Node.js process as non-root user
     - Expose configurable port (default 3000)
@@ -239,7 +239,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Create `.dockerignore` in each service excluding `node_modules`, `tests/`, `*.md`
     - _Requirements: 11.1, 11.2, 11.3, 11.4, 11.5, 11.6_
 
-  - [ ] 13.3 Create Docker Compose configuration
+  - [x] 13.3 Create Docker Compose configuration
     - Create `sakila-microservices/docker-compose.yml` defining services for PostgreSQL, all seven microservices, and the API Gateway
     - Configure PostgreSQL service with volume for data persistence, mount `infrastructure/migrations/` and `infrastructure/db-init/` for initialization
     - Configure each microservice with environment variables: `DATABASE_URL`, `JWT_SECRET`, `PORT`, `LOG_LEVEL`, and inter-service URLs (e.g., `PAYMENT_SERVICE_URL=http://payment-service:3005`)
@@ -248,7 +248,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - Expose only the API Gateway port 8080 externally
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7_
 
-  - [ ]* 13.4 Write property test for API Gateway routing
+  - [x] 13.4 Write property test for API Gateway routing
     - **Property 6: API Gateway Returns 502 When Target Unreachable** — When target microservice is unreachable, gateway returns 502 with descriptive error
     - **Validates: Requirements 9.8**
 

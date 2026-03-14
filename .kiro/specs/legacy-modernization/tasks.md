@@ -275,7 +275,7 @@ Convert the Spring REST Sakila monolith into seven domain-bounded Node.js/Expres
     - **Property 21: Missing Required Configuration Causes Startup Failure** — When DATABASE_URL or JWT_SECRET is missing, service logs error and exits non-zero
     - **Validates: Requirements 19.4**
 
-- [ ] 15. Checkpoint - Full stack orchestration
+- [x] 15. Checkpoint - Full stack orchestration
   - Ensure `docker-compose up` starts all services, the API Gateway routes requests correctly, health endpoints respond through the gateway, and all property tests pass. Ask the user if questions arise.
 
 - [ ] 16. Implement integration tests
